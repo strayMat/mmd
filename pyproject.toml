@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "mmd"
+version = "0.1.0"
+description = "Utilitaries for 2 samples mmd using median heuristic as implemented by [Eugenium](https://github.com/eugenium/MMD/blob/master/mmd.py)"
+authors = ["strayMat <m.doutreligne@has-sante.fr>"]
+packages = [
+    { include = "mmd" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9, <3.11"
+scikit-learn = "^1.0.1"
+numpy = "^1.21.5"
+pandas = "^1.3.5"
+matplotlib = "^3.5.1"
+seaborn = "^0.11.2"
+ipykernel = "^6.6.0"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^21.12b0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
