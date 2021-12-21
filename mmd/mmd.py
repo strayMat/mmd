@@ -19,11 +19,11 @@ def mmd_rbf(X, Y):
     Returns:
         [scalar] -- [MMD value]
     """
-    gamma = kernelwidthPair(X, Y)
+    gamma = kernelwidth_pair(X, Y)
     return mmd_rbf_sigma_(X, Y, gamma)
 
 
-def kernelwidthPair(X, Y):
+def kernelwidth_pair(X, Y):
     """Implementation of the median heuristic. See Gretton 2012
     Pick sigma such that the exponent of exp(- ||x-y|| / (2*sigma2)),
     in other words ||x-y|| / (2*sigma2),  equals 1 for the median distance x

@@ -1,5 +1,5 @@
 # %%
-from mmd.mmd import kernelwidthPair, mmd_rbf, mmd_rbf_sigma_
+from mmd.mmd import kernelwidth_pair, mmd_rbf, mmd_rbf_sigma_
 from mmd.demo_utils import COLOR_MAPPING, LABEL_MAPPING, generate_rotation
 
 import numpy as np
@@ -20,7 +20,7 @@ s_1 = s_0
 X_0 = generator.normal(loc=m_0, scale=s_0, size=(N, 1))
 X_1 = generator.normal(loc=m_1, scale=s_1, size=(N, 1))
 
-sigma = kernelwidthPair(X_0, X_1)
+sigma = kernelwidth_pair(X_0, X_1)
 print("Example 1D:\n")
 print(f"Bandwith given by median heuristic: {sigma}")
 print(f"MMD-RBF with median heuristic: {mmd_rbf_sigma_(X_0, X_1, sigma=sigma)}")
@@ -75,7 +75,7 @@ if plot:
         loc="upper right",  # bbox_to_anchor=(0.9, 1.01),
     )
 
-sigma = kernelwidthPair(X_control, X_treated)
+sigma = kernelwidth_pair(X_control, X_treated)
 print("-----\nExample 2D:\n")
 print(f"Bandwith given by median heuristic: {sigma}")
 print(
