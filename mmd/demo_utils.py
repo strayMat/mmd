@@ -36,3 +36,28 @@ def generate_rotation(theta: float = None, random_state=None):
     rotation = np.array(((c, -s), (s, c)))
 
     return rotation
+
+
+def generate_gaussian_blobs(
+    N: int, overlap: float = 1, sigma=np.array([2, 5]), population_ratio=0.5, seed=None
+):
+    generator = check_random_state(seed)
+
+    sigma_ = np.diag(sigma)
+    rotation = generate_rotation(theta=1, random_state=generator)
+
+    center = np.array([overlap, 0])
+    center_rotated_1 = rotation.dot(center)
+    center_rotated_0 = rotation.dot(-center)
+    sigma_rotated = rotation.dot(sigma_).dot(rotation.T)
+    X_control = generator.multivariate_normal(
+        mean=center_rotated_0,
+        cov=sigma_rotated,
+        size=int((1 - population_ratio) * N),
+    )
+    X_treated = generator.multivariate_normal(
+        mean=center_rotated_1,
+        cov=sigma_rotated,
+        size=int(population_ratio * N),
+    )
+    return X_control, X_treated
