@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 seed = 0
 generator = check_random_state(seed)
 # %% [markdown]
-# 1 D example
+# # 1D example with Gaussian distributions
 # %%
 N = 100
 m_0 = 10
@@ -27,18 +27,19 @@ print(f"MMD-RBF with median heuristic: {mmd_rbf_sigma_(X_0, X_1, sigma=sigma)}")
 print(f"MMD-RBF with sigma=1: {mmd_rbf_sigma_(X_0, X_1, sigma=1)}")
 
 # %% [markdown]
-# 2D example
+# # 2D example
+#
 # Generate two populations as rotated 2D gaussians
 # %%
 N = 1000  # 10K samples -> 12s on HAS laptop
 population_ratio = 0.2
-overlap = 0.1
+overlap = 2
 sigma = np.diag(np.array([2, 5]))
 # angle for point rotation
 theta = 0
 plot = True
 
-rotation = generate_rotation(theta=0, random_state=generator)
+rotation = generate_rotation(theta=1, random_state=generator)
 center = np.array([overlap, 0])
 center_rotated_1 = rotation.dot(center)
 center_rotated_0 = rotation.dot(-center)
@@ -75,7 +76,7 @@ if plot:
     )
 
 sigma = kernelwidthPair(X_control, X_treated)
-print("Example 2D:\n")
+print("-----\nExample 2D:\n")
 print(f"Bandwith given by median heuristic: {sigma}")
 print(
     f"MMD-RBF with median heuristic: {mmd_rbf_sigma_(X_control, X_treated, sigma=sigma)}"
